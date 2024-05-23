@@ -1,0 +1,20 @@
+<!-- view/frontend/templates/page_list.phtml -->
+
+<!-- Display the title with proper escaping -->
+<?= $escaper->escapeHtml($block->getTitle()) ?>
+
+<!-- Check if there are pages and display them -->
+<?php if ($pages = $block->getPages()): ?>
+    <ul>
+        <?php foreach ($pages as $page): ?>
+            <li>
+                <!-- Escape the URL and page title to prevent XSS attacks -->
+                <a href="<?= $escaper->escapeUrl($block->getUrl($page->getIdentifier())); ?>">
+                    <?= $escaper->escapeHtml($page->getTitle()); ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>No pages found.</p>
+<?php endif; ?>
