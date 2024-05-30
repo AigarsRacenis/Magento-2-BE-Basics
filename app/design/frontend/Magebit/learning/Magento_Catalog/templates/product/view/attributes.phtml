@@ -1,0 +1,62 @@
+<?php
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+
+use PayPal\Braintree\Block\Adminhtml\Virtual\Script;
+
+?>
+<?php
+    $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+    $_product = $block->getProduct();
+    $attributesToShow = ['dimensions', 'colour', 'material', 'activity', 'color'];
+    $displayedAttributes = [];
+
+/**
+ * Function to add attribute if it has a meaningful value
+ *
+ * @param string $attributeCode
+ * @param Product $_product
+ * @param array $displayedAttributes
+ * @return void
+ */
+function addAttributeIfAvailable($attributeCode, $_product, &$displayedAttributes)
+{
+    $attribute = $_product->getResource()->getAttribute($attributeCode);
+    if ($attribute && ($value = $attribute->getFrontend()->getValue($_product))
+    && $value != 'No' && $value != '' && !is_numeric($value)) {
+        $displayedAttributes[] = [
+            'label' => $attribute->getStoreLabel(),
+            'value' => $value
+        ];
+    }
+}
+
+    // Check primary attributes
+foreach ($attributesToShow as $attributeCode) {
+    addAttributeIfAvailable($attributeCode, $_product, $displayedAttributes);
+    if (count($displayedAttributes) >= 3) {
+        break;
+    }
+}
+
+?>
+<?php if (!empty($displayedAttributes) || $_product->getShortDescription()):?>
+    <div class="additional-attributes-wrapper">
+        <ul class="additional-attributes">
+            <?php foreach ($displayedAttributes as $_data):?>
+                <li>
+                    <strong><?= $escaper->escapeHtml($_data['label']) ?>:</strong>
+                    <?= /* @noEscape */ $_helper->productAttribute($_product, $_data['value'], $_data['label']) ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <?php if ($_product->getShortDescription()): ?>
+            <div class="product-short-description">
+            <?= $escaper->escapeHtml($_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description')) ?>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif;?>

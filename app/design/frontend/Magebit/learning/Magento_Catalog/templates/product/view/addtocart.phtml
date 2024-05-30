@@ -1,0 +1,81 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()):?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()):?>
+        <div class="field qty-stock-wrapper">
+            <div class="stock-container">
+                <div class="field qty">
+                    <label class="label" for="qty"></label>
+                    <div class="control qty-box">
+                        <?php
+                            $stockItem = $_product->getExtensionAttributes()->getStockItem();
+                            $qty = 0;
+                        if ($stockItem) {
+                            $qty = (int)$stockItem->getQty();
+                        }
+                        ?>
+                        <button type="button" class="qty-decrease">-</button>
+                        <input type="number"
+                            name="qty"
+                            id="qty"
+                            min="1"
+                            value="<?= $block->getProductDefaultQty() * 1 ?>"
+                            title="<?= $escaper->escapeHtmlAttr(__('Qty')) ?>"
+                            class="input-text qty"
+                            data-validate="<?= $escaper->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                            data-max-qty="<?= $escaper->escapeHtmlAttr($qty) ?>"
+                        />
+                        <button type="button" class="qty-increase">+</button>
+                    </div>
+                </div>
+
+                <?php if ($qty > 0):?>
+                    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Magento_Catalog::images/checkmark2-svgrepo-com.svg')) ?>"
+                    class="stock-icon">
+                    <div class="stock-quantity">
+                        <strong>IN STOCK</strong>
+                        <span class="stock-count"> <?= $escaper->escapeHtmlAttr($qty) ?> items available </span>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div class="actions">
+            <button type="submit"
+                    title="<?= $escaper->escapeHtmlAttr($buttonTitle) ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button" disabled>
+                <span><?= $escaper->escapeHtml($buttonTitle) ?></span>
+            </button>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+</div>
+<?php else:?>
+    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('Magento_Catalog::images/cross-svgrepo-com.svg')) ?>"
+    class="stock-icon">
+    <div class="stock-quantity">
+        <strong>OUT OF STOCK</strong>
+    </div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        },
+        "*": {
+            "Magento_Catalog/js/qty-counter": {}
+        }
+    }
+</script>
