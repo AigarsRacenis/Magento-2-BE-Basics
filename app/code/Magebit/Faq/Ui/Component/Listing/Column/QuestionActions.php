@@ -1,4 +1,5 @@
 <?php
+
 namespace Magebit\Faq\Ui\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;

@@ -10,7 +10,6 @@ use Magento\Framework\Model\AbstractModel;
  */
 class Question extends AbstractModel implements QuestionInterface
 {
-
     private const CACHE_TAG = 'faq_question'; // Cache
 
     /**

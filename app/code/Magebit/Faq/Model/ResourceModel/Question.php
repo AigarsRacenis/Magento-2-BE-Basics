@@ -7,7 +7,6 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class Question extends AbstractDb
 {
-
     /**
      * @var string
      */

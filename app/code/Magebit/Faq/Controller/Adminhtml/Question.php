@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magebit\Faq\Controller\Adminhtml;
 
 abstract class Question extends \Magento\Backend\App\Action

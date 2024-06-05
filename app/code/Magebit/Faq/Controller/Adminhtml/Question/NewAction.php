@@ -1,4 +1,5 @@
 <?php
+
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;

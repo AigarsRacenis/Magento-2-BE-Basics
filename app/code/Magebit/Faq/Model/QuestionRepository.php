@@ -1,4 +1,5 @@
 <?php
+
 namespace Magebit\Faq\Model;
 
 use Psr\Log\LoggerInterface;

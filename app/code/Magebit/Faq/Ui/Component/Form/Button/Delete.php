@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © Magebit, Inc.
  */

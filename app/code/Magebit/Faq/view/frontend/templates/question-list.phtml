@@ -7,17 +7,25 @@
 <h1 class="faq-title">Frequently Asked Questions</h1>
 <?php if ($questions->count()): ?>
     <div class="faq-questions">
-        <ul class="faq-accordion" data-mage-init='{"accordion":{"active": false, "multipleCollapsible": true}}'>
+        <ul class="faq-accordion"
+        data-mage-init='{"accordion":
+                                {
+                                    "openedState": "active",
+                                    collapsible": true,
+                                    "active": false,
+                                    "multipleCollapsible": true
+                                }
+                        }'>
             <?php foreach ($questions as $question): ?>
-                <li class="faq-whole-question">
+                <li class="faq-whole-question" data-role="collapsible">
                     <div class="faq-question">
-                    <div class="faq-question-text"><?= $escaper->escapeHtml($question->getQuestion()) ?></div>
+                    <div class="faq-question-text" data-role="trigger">
+                        <?= $escaper->escapeHtml($question->getQuestion()) ?>
                     </div>
-                    <?php if ($question->getAnswer()): ?>
-                        <div class="faq-answer" data-role="content">
-                            <div class="faq-answer-text"><?= $escaper->escapeHtml($question->getAnswer()) ?></div>
-                        </div>
-                    <?php endif; ?>
+                    </div>
+                    <div class="faq-answer" data-role="content">
+                        <div class="faq-answer-text"><?= $escaper->escapeHtml($question->getAnswer()) ?></div>
+                    </div>
                 </li>
             <?php endforeach; ?>
         </ul>
