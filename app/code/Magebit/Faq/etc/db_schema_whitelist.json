@@ -1,0 +1,18 @@
+{
+    "magebit_faq": {
+        "column": {
+            "id": true,
+            "question": true,
+            "answer": true,
+            "status": true,
+            "position": true,
+            "updated_at": true
+        },
+        "index": {
+            "MAGEBIT_FAQ_STATUS_POSITION": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
