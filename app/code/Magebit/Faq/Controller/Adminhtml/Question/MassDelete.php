@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Copyright © Magebit, Inc.
- */
-
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magento\Backend\App\{
@@ -71,6 +67,7 @@ class MassDelete extends Action
 
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         return $resultRedirect->setPath('*/*/');
     }
 }

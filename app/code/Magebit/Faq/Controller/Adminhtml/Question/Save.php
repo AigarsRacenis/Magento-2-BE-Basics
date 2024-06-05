@@ -83,14 +83,15 @@ class Save extends Action implements HttpPostActionInterface
         if (!$data) {
             return $resultRedirect->setPath('*/*/');
         }
+
         if (empty($data['id'])) {
             $data['id'] = null;
         }
 
-            /** @var QuestionInterface $model */
-            $model = $this->questionFactory->create();
+        /** @var QuestionInterface $model */
+        $model = $this->questionFactory->create();
+        $id = $this->getRequest()->getParam('id');
 
-            $id = $this->getRequest()->getParam('id');
         if ($id) {
             try {
                 $model = $this->questionRepository->getById($id);
@@ -110,6 +111,7 @@ class Save extends Action implements HttpPostActionInterface
 
             $this->questionRepository->save($model);
             $this->messageManager->addSuccessMessage(__('You saved the question.'));
+
             return $this->processResultRedirect($model, $resultRedirect, $data);
         } catch (LocalizedException $e) {
             $this->messageManager->addExceptionMessage($e->getPrevious() ?: $e);
@@ -118,6 +120,7 @@ class Save extends Action implements HttpPostActionInterface
         }
 
             $this->dataPersistor->set('faq_question', $data);
+
             return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
     }
 
@@ -132,7 +135,9 @@ class Save extends Action implements HttpPostActionInterface
     private function processResultRedirect($model, $resultRedirect, $data)
     {
         $this->dataPersistor->clear('faq_question');
+
         if ($this->getRequest()->getParam('back', false) === 'close') {
+
             return $resultRedirect->setPath(
                 '*/*/',
                 [
@@ -141,6 +146,7 @@ class Save extends Action implements HttpPostActionInterface
                 ]
             );
         }
+
         return $resultRedirect->setPath(
             '*/*/edit',
             [

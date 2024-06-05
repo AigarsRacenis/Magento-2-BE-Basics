@@ -67,9 +67,9 @@ class MassDisable extends Action implements HttpPostActionInterface
         $this->messageManager->addSuccessMessage(
             __('A total of %1 record(s) have been disabled.', $collection->getSize())
         );
-
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         return $resultRedirect->setPath('*/*/');
     }
 }

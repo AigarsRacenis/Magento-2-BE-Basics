@@ -3,12 +3,12 @@
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magento\Backend\App\Action\Context;
-use Magento\Backend\Model\View\Result\ForwardFactory;
 use Magebit\Faq\Controller\Adminhtml\Question;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\Controller\{
     Result\Forward,
+    Result\ForwardFactory,
     ResultInterface
 };
 
@@ -44,6 +44,7 @@ class NewAction extends Question implements HttpGetActionInterface
     {
         /** @var Forward $resultForward */
         $resultForward = $this->resultForwardFactory->create();
+
         return $resultForward->forward('edit');
     }
 }
