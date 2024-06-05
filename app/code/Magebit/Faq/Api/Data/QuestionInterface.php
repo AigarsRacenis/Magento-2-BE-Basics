@@ -4,7 +4,7 @@ namespace Magebit\Faq\Api\Data;
 
 interface QuestionInterface
 {
-    /**#@+
+    /**
      * Constants for keys of data array. Identical to the name of the getter in snake case
      */
     public const TABLE        = 'magebit_faq';
@@ -14,7 +14,6 @@ interface QuestionInterface
     public const STATUS       = 'status';
     public const POSITION     = 'position';
     public const UPDATED_AT   = 'updated_at';
-    /**#@-*/
 
     /**
      * Get ID

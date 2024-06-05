@@ -6,17 +6,25 @@
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\App\Request\DataPersistorInterface;
-use Magento\Framework\Controller\Result\Redirect;
-use Magento\Framework\Controller\ResultInterface;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\App\ObjectManager;
-use Magebit\Faq\Api\Data\QuestionInterface;
-use Magebit\Faq\Api\QuestionRepositoryInterface;
+use Magento\Backend\App\{
+    Action\Context,
+    Action
+};
+use Magebit\Faq\Api\{
+    Data\QuestionInterface,
+    QuestionRepositoryInterface
+};
 use Magebit\Faq\Model\QuestionFactory;
+use Magento\Framework\App\{
+    Action\HttpPostActionInterface,
+    Request\DataPersistorInterface,
+    ObjectManager
+};
+use Magento\Framework\Controller\{
+    Result\Redirect,
+    ResultInterface
+};
+use Magento\Framework\Exception\LocalizedException;
 
 /**
  * Save FAQ question action.

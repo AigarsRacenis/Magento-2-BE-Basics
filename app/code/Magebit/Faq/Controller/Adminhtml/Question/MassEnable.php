@@ -2,13 +2,21 @@
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
+use Magento\Backend\App\{
+    Action\Context,
+    Action
+};
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Backend\App\Action\Context;
-use Magento\Ui\Component\MassAction\Filter;
+use Magento\Framework\{
+    Controller\ResultFactory,
+    Exception\LocalizedException
+};
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Magento\Ui\Component\MassAction\Filter;
 
-class MassEnable extends \Magento\Backend\App\Action implements HttpPostActionInterface
+
+class MassEnable extends Action implements HttpPostActionInterface
 {
     /**
      * Authorization level of a basic admin session
@@ -42,8 +50,8 @@ class MassEnable extends \Magento\Backend\App\Action implements HttpPostActionIn
     /**
      * Execute action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @return Redirect
+     * @throws LocalizedException|\Exception
      */
     public function execute()
     {
@@ -58,7 +66,7 @@ class MassEnable extends \Magento\Backend\App\Action implements HttpPostActionIn
             __('A total of %1 record(s) have been enabled.', $collection->getSize())
         );
 
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('*/*/');
     }

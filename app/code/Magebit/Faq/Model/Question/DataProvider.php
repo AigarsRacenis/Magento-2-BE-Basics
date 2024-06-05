@@ -2,14 +2,17 @@
 
 namespace Magebit\Faq\Model\Question;
 
-use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Magebit\Faq\Model\ResourceModel\Question\{
+    Collection,
+    CollectionFactory
+};
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 
 class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider
 {
     /**
-     * @var \Magebit\Faq\Model\ResourceModel\Question\Collection
+     * @var Collection
      */
     protected $collection;
 

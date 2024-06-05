@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Magebit\Faq\Block;
 
+use Magebit\Faq\Model\ResourceModel\Question\{
+    Collection,
+    CollectionFactory
+};
 use Magento\Framework\View\Element\Template;
-use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Template\Context;
 
 class QuestionList extends Template
 {
@@ -15,7 +19,7 @@ class QuestionList extends Template
     protected $questionCollectionFactory;
 
     /**
-     * @param Template\Context $context
+     * @param Context $context
      * @param CollectionFactory $questionCollectionFactory
      * @param array $data
      */
@@ -31,7 +35,7 @@ class QuestionList extends Template
     /**
      * Gets the question collection
      *
-     * @return \Magebit\Faq\Model\ResourceModel\Question\Collection
+     * @return Collection
      */
     public function getQuestions()
     {

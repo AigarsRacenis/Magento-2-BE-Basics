@@ -2,8 +2,9 @@
 
 namespace Magebit\Faq\Model;
 
-use Magebit\Faq\Api\Data\QuestionInterface;
 use Magento\Framework\Model\AbstractModel;
+use Magebit\Faq\Api\Data\QuestionInterface;
+use Magebit\Faq\Model\ResourceModel\Question as QuestionResource;
 
 /**
  * FAQ Question model
@@ -37,7 +38,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     protected function _construct()
     {
-        $this->_init(\Magebit\Faq\Model\ResourceModel\Question::class);
+        $this->_init(QuestionResource::class);
     }
 
     /**

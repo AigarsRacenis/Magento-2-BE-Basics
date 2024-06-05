@@ -2,18 +2,26 @@
 
 namespace Magebit\Faq\Model;
 
+use Magebit\Faq\Api\{
+    Data\QuestionInterface,
+    QuestionRepositoryInterface
+};
+use Magebit\Faq\Model\ResourceModel\{
+    Question as QuestionResource,
+    Question\CollectionFactory as QuestionCollectionFactory
+};
+use Magento\Framework\Api\{
+    SearchCriteriaInterface,
+    SearchCriteria\CollectionProcessorInterface,
+    SearchResultsInterfaceFactory,
+
+};
+use Magento\Framework\Exception\{
+    CouldNotDeleteException,
+    CouldNotSaveException,
+    NoSuchEntityException
+};
 use Psr\Log\LoggerInterface;
-use Magebit\Faq\Api\Data\QuestionInterface;
-use Magebit\Faq\Api\QuestionRepositoryInterface;
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magebit\Faq\Api\Data\QuestionSearchResultsInterface;
-use Magento\Framework\Api\SearchResultsInterfaceFactory;
-use Magebit\Faq\Model\ResourceModel\Question as QuestionResource;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
-use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory as QuestionCollectionFactory;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Exception\CouldNotDeleteException;
 
 class QuestionRepository implements QuestionRepositoryInterface
 {

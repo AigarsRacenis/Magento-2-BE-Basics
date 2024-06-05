@@ -2,9 +2,10 @@
 
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
+use Magebit\Faq\Ui\Component\Form\Button\GenericButton;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Ui\Component\Control\Container;
-use Magebit\Faq\Ui\Component\Form\Button\GenericButton;
+
 
 class Save extends GenericButton implements ButtonProviderInterface
 {

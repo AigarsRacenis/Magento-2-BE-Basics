@@ -3,17 +3,18 @@
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Backend\App\Action;
 
-class Delete extends \Magento\Backend\App\Action implements HttpPostActionInterface
+class Delete extends Action implements HttpPostActionInterface
 {
     /**
-     * Delete action
+     * Delete question
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return Redirect
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $id = $this->getRequest()->getParam('id');
         if ($id) {
