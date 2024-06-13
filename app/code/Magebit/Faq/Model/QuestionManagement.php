@@ -1,11 +1,16 @@
 <?php
+
 namespace Magebit\Faq\Model;
 
 use Magebit\Faq\Api\QuestionManagementInterface;
-use Magebit\Faq\Model\ResourceModel\Question as QuestionResource;
-use Magebit\Faq\Model\QuestionFactory;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Exception\CouldNotSaveException;
+use Magebit\Faq\Model\{
+    ResourceModel\Question as QuestionResource,
+    QuestionFactory
+};
+use Magento\Framework\Exception\{
+    NoSuchEntityException,
+    CouldNotSaveException
+};
 
 class QuestionManagement implements QuestionManagementInterface
 {

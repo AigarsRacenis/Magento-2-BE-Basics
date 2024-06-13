@@ -1,12 +1,14 @@
 <?php
+
 /**
  * Copyright © Magebit, Inc.
  */
 
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
-use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magebit\Faq\Ui\Component\Form\Button\GenericButton;
+use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
+
 
 /**
  * Class DeleteButton

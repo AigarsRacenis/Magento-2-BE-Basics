@@ -2,12 +2,20 @@
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magento\Backend\App\Action\Context;
+use Magebit\Faq\Api\{
+    QuestionRepositoryInterface,
+    Data\QuestionInterface
+};
+use Magento\Backend\App\{
+    Action\Context,
+    Action
+};
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\Result\JsonFactory;
-use Magebit\Faq\Api\QuestionRepositoryInterface;
-use Magebit\Faq\Api\Data\QuestionInterface;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
 
-class InlineEdit extends \Magento\Backend\App\Action
+class InlineEdit extends Action
 {
     /**
      * Authorization level of a basic admin session
@@ -44,18 +52,19 @@ class InlineEdit extends \Magento\Backend\App\Action
     /**
      * Execute action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return ResultInterface
+     * @throws LocalizedException
      */
     public function execute()
     {
-        /** @var \Magento\Framework\Controller\Result\Json $resultJson */
+        /** @var Json $resultJson */
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];
 
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
+
             if (!count($postItems)) {
                 $messages[] = __('Please correct the data sent.');
                 $error = true;

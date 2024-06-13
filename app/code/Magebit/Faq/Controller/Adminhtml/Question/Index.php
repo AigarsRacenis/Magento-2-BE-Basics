@@ -2,11 +2,17 @@
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
+use Magento\Backend\App\{
+    Action\Context,
+    Action
+};
+use Magento\Framework\{
+    Controller\ResultInterface,
+    Registry
+};
+use Magento\Backend\Model\View\Result\Page;
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
-use Magento\Backend\App\Action;
 
 class Index extends Action implements HttpGetActionInterface
 {
@@ -32,11 +38,11 @@ class Index extends Action implements HttpGetActionInterface
     /**
      * Index action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu('Magebit_Faq::faq')
             ->getConfig()->getTitle()->prepend(__('Frequently Asked Questions'));

@@ -1,4 +1,5 @@
 <?php
+
 namespace Magebit\Faq\Api;
 
 interface QuestionManagementInterface

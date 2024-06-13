@@ -1,15 +1,18 @@
 <?php
-/**
- * Copyright © Magebit, Inc.
- */
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Ui\Component\MassAction\Filter;
+use Magento\Backend\App\{
+    Action\Context,
+    Action
+};
+use Magento\Backend\Model\View\Result\Redirect;
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Magento\Framework\{
+    Controller\ResultFactory,
+    Exception\LocalizedException
+};
+use Magento\Ui\Component\MassAction\Filter;
 
 class MassDelete extends Action
 {
@@ -48,8 +51,8 @@ class MassDelete extends Action
     /**
      * Execute action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @return Redirect
+     * @throws LocalizedException|\Exception
      */
     public function execute()
     {
@@ -62,8 +65,9 @@ class MassDelete extends Action
 
         $this->messageManager->addSuccessMessage(__('A total of %1 record(s) have been deleted.', $collectionSize));
 
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         return $resultRedirect->setPath('*/*/');
     }
 }
